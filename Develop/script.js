@@ -41,16 +41,16 @@ function generatePassword() {
   var includeNumbers = verificationArray[4]
 
   if (includeSpecialCharacter == true) {
-    allPossibleOptions.push(characterSelector)
+    allPossibleOptions = allPossibleOptions.concat(characterSelector)
   }
   if (includeUpperCase == true) {
-    allPossibleOptions.push(upperCase)
+    allPossibleOptions = allPossibleOptions.concat(upperCase)
   }
   if (includeLowerCase == true) {
-    allPossibleOptions.push(lowerCase)
+    allPossibleOptions = allPossibleOptions.concat(lowerCase)
   }
-  if (includeNumbers == true) {
-    allPossibleOptions.push(numberSelector)
+  if (includeSpecialCharacter == true) {
+    allPossibleOptions = allPossibleOptions.concat(numberSelector)
   }
   // console.log(includeSpecialCharacter);
   // console.log(allPossibleOptions);
@@ -65,11 +65,15 @@ function generatePassword() {
   //for loop
   var i;
   for (i = 0; i < length; i++) {
-    index = Math.floor(Math.random()) * allPossibleOptions.length 
+    index = Math.floor(Math.random() * allPossibleOptions.length)
     finalPassword.push(allPossibleOptions[index])
   }
 
-  return finalPassword;
+  var string = finalPassword.join("")
+
+  console.log(string)
+
+  return string;
 }
 
 
@@ -82,7 +86,7 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = finalPassword;
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
